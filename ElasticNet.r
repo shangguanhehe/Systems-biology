@@ -1,0 +1,8 @@
+setwd('F:/R/MARS')
+library(glmnet)
+a <- read.table("30_edger.txt",header=T, row.names = 1, sep = "\t")
+x = as.matrix(a[, 2:108])
+y = as.matrix(a[, 1])
+cvfit<-cv.glmnet(x, y)
+plot(cvfit)
+coef(cvfit, s="lambda.min")
